@@ -151,3 +151,16 @@ extension UIView {
     }
 }
 
+//make available to Objective C
+extension UIView {
+    
+    @objc public func showWaitingLoader() {
+        let gradient = SkeletonGradient(baseColor: SkeletonDefaultConfig.tintColor)
+        let animation = SkeletonAnimationBuilder().makeSlidingAnimation(withDirection: GradientDirection.leftRight)
+        self.showAnimatedGradientSkeleton(usingGradient: gradient, animation: animation)
+    }
+    
+    @objc public func hideWaitingLoader(){
+        self.hideSkeleton(reloadDataAfter: true)
+    }
+}
