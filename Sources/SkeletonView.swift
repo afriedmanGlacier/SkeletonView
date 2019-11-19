@@ -155,7 +155,12 @@ extension UIView {
 extension UIView {
     
     @objc public func showWaitingLoader() {
-        let gradient = SkeletonGradient(baseColor: SkeletonDefaultConfig.tintColor)
+        var gcolor = SkeletonDefaultConfig.tintColor
+        if #available(iOS 13, *) {
+            gcolor = UIColor.systemGray4
+        }
+            
+        let gradient = SkeletonGradient(baseColor: gcolor)
         let animation = SkeletonAnimationBuilder().makeSlidingAnimation(withDirection: GradientDirection.leftRight)
         self.showAnimatedGradientSkeleton(usingGradient: gradient, animation: animation)
     }
